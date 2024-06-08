@@ -12,7 +12,7 @@ title                    : "Shengli Zhu"
 title_separator          : "-"
 name                     : &name "Your Name"
 description              : &description "personal description"
-url                      : shengli-zhu.github.io
+url                      : https://shengli-zhu.github.io
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "academicpages/academicpages.github.io"
 
