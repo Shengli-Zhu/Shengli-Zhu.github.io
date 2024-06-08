@@ -1,8 +1,8 @@
-{% include base_path %}
+{% extends "base.html" %}
 
 {% block footer %}
 <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=RCtLlFwwTW_51i6dYZeHsxMXC9xBfgM88YSyTK5429A&cl=ffffff&w=a"></script>
   {{ super() }}
 {% endblock %}
 
-<div class="page__footer-copyright">&copy; {{ site.time | date: '%Y' }} {{ Shengli Zhu | default: site.title }}. {{ site.data.ui-text[site.locale].powered_by | default: "Powered by " }} <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>, a fork of <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; {{ site.time | date: '%Y' }} {{ site.author.name }}. {{ site.data.ui-text[site.locale].powered_by | default: "Powered by " }} <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>, a fork of <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
