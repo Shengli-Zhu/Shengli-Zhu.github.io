@@ -21,7 +21,7 @@ repository               : "academicpages/academicpages.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
+  avatar           : "ShengliZhu_photoID.jpg"
   name             : "Shengli Zhu"
   pronouns         : # example: "she/her"  
   bio              : "A Hydrology and Water Resources Master at the Institute of Geographic Sciences and Resources, Chinese Academy of Sciences"

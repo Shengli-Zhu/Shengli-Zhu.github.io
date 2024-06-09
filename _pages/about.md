@@ -10,7 +10,7 @@ redirect_from:
 
 # About Me
 
-<img src="https://shengli-zhu.github.io/images/ShengliZhu.png" class="floatpic" width="360" height="480">
+<img src="https://shengli-zhu.github.io/images/ShengliZhu.png" class="floatpic" width="330" height="200" style="float:right;margin-left:20px">
 
 Here is **Shengli Zhu (Victor, 朱胜利)**.
 
