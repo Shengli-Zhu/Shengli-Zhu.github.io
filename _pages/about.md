@@ -27,7 +27,7 @@ If you are interested in any aspect of me, I would love to chat and collaborate,
 
 ## Research Interests
 
-- Hydrology and water resources
+- Hydrology and Water Rsesources
 - Large-Scale Hydrologic Simulation and Prediction
 - Rainfall-Runoff Modeling
 - Remote Sensing
