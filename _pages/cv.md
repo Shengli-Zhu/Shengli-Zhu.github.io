@@ -9,6 +9,6 @@ redirect_from:
 
 {% include base_path %}
 
-<embed src="{{ site.baseurl }}/files/cv.pdf" width="650" height="800" type='application/pdf'>
+<embed src="{{ site.baseurl }}/files/CV_2024.6.pdf" width="650" height="800" type='application/pdf'>
 
 You can download a PDF copy of my CV <a href="{{ site.baseurl }}/files/CV_2024.6.pdf">here.</a>
