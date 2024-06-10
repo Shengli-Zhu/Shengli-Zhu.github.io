@@ -9,7 +9,7 @@ redirect_from:
 
 {% include base_path %}
 
-<div style="margin-top: 60px;">
+<div style="margin-top: 60px;"></div>
 # Curriculum Vitae (CV)
 
 <embed src="{{ site.baseurl }}/files/CV_2024.6.pdf" width="650" height="800" type='application/pdf'>
