@@ -19,7 +19,7 @@ If you are interested in any aspect of me, I would love to chat and collaborate,
 
 ## Education
 
-- **Sep 2022 - Present:**Institute of Geographic Sciences and Natural Resources Research, Chinese Academy of Sciences, M.S. in Hydrology and Water Resource
+- **Sep 2022 - Present:** Institute of Geographic Sciences and Natural Resources Research, Chinese Academy of Sciences, M.S. in Hydrology and Water Resource
 - **Sep 2018 - Jun 2022:** Shandong Normal University, B.S. in Geographic Science
 
 ---
