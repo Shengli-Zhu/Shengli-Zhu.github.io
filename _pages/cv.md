@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "Curriculum Vitae (CV)"
+title: ""
 permalink: /cv/
 author_profile: true
 redirect_from:
@@ -8,6 +8,9 @@ redirect_from:
 ---
 
 {% include base_path %}
+
+<div style="margin-top: 60px;">
+# Curriculum Vitae (CV)
 
 <embed src="{{ site.baseurl }}/files/CV_2024.6.pdf" width="650" height="800" type='application/pdf'>
 
