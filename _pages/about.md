@@ -1,13 +1,13 @@
 ---
 permalink: /
-title: ""
+title: "About Me"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
 
-<div style="margin-top: 60px;">
+
 # About Me
 
 <img src="https://shengli-zhu.github.io/images/ShengliZhu.png" class="floatpic" width="330" height="200" style="float:right;margin-left:20px">

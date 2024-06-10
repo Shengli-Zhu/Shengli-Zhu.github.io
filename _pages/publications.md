@@ -5,8 +5,6 @@ permalink: /publications/
 author_profile: true
 ---
 
-<div style="margin-top: 60px;">
-
 # Publications
 
 ## Journal Papers
