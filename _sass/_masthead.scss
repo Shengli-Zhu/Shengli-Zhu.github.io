@@ -6,7 +6,7 @@
   position: fixed;
   background: white;
   border-bottom: 1px solid $border-color;
-  height: 70px;
+  height: $masthead-height;
   top: 0;
   width: 100%;
 
@@ -55,9 +55,4 @@
     padding-right: 3em;
     font-weight: 700;
   }
-}
-
-/* 添加 main 标签的上边距样式 */
-main {
-  margin-top: 70px; /* 替换为导航栏的实际高度 */
 }
