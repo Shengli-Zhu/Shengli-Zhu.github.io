@@ -7,7 +7,6 @@ redirect_from:
   - /about.html
 ---
 
-<div style="margin-top: 60px;"></div>
 # About Me
 
 <img src="https://shengli-zhu.github.io/images/ShengliZhu.png" class="floatpic" width="330" height="200" style="float:right;margin-left:20px;margin-top:60px;">
