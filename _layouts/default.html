@@ -16,15 +16,15 @@ layout: compress
     {% include browser-upgrade.html %}
     {% include masthead.html %}
 
-    <main role="main" style="margin-top: 0; margin: 0; padding-bottom: 200px;">
+    <main role="main" style="margin-top: 0; margin: 0;">
       {{ content }}
     </main>
 
-    <footer class="page__footer" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; text-align: center;">
+    <footer class="page__footer" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; text-align: center; margin-top: auto;">
       <div class="page__footer-map" style="width: 300px; height: 200px;">
         <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=RCtLlFwwTW_51i6dYZeHsxMXC9xBfgM88YSyTK5429A&cl=ffffff&w=a"></script>
       </div>
-      <div class="page__footer-copyright">
+      <div class="page__footer-content" style="padding: 20px 0;">
         &copy; {{ site.time | date: '%Y' }} {{ site.author.name }}. {{ site.data.ui-text[site.locale].powered_by | default: "Powered by" }} 
         <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; 
         <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>, a fork of 
