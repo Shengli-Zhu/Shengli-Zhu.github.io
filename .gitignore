@@ -10,3 +10,4 @@ Gemfile.lock
 # Ingore files created by npm
 node_modules
 package-lock.json
+_blogs/2023-06-30-blog-post-1.md
