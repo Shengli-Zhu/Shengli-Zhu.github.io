@@ -13,4 +13,4 @@ redirect_from:
 
 <embed src="{{ site.baseurl }}/files/CV_2024.7.pdf" width="650" height="800" type='application/pdf'>
 
-You can download a PDF copy of my CV <a href="{{ site.baseurl }}/files/CV_2024.7.pdf">here.</a>
+You can download a PDF copy of my CV <a href="{{ site.baseurl }}/files/CV_2024.6.pdf">here.</a>
