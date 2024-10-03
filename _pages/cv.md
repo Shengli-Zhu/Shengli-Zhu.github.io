@@ -11,6 +11,6 @@ redirect_from:
 
 # Curriculum Vitae (CV)
 
-<embed src="{{ site.baseurl }}/files/CV_2024.9.pdf" width="650" height="800" type='application/pdf'>
+<embed src="{{ site.baseurl }}/files/CV_2024.10.pdf" width="650" height="800" type='application/pdf'>
 
-You can download a PDF copy of my CV <a href="{{ site.baseurl }}/files/CV_2024.6.pdf">here.</a>
+You can download a PDF copy of my CV <a href="{{ site.baseurl }}/files/CV_2024.10.pdf">here.</a>
