@@ -13,7 +13,7 @@ redirect_from:
 
 Here is **Shengli Zhu (Victor, 朱胜利)**.
 
-I am currently a second-year master's student at the Institute of Geographic Sciences and Natural Resources Research, Chinese Academy of Sciences (IGSNGRR, CAS), under the supervision of Associate Professor [Zhaofei Liu](https://www.researchgate.net/profile/Zhaofei-Liu-3). I received my Bachelor's degree from the College of Geography and Environment, Shandong Normal University(SDNU), where I was advised by Professor [Houfeng Liu](http://www.pre.sdnu.edu.cn/info/1029/2916.htm).
+I am currently a third-year master's student at the Institute of Geographic Sciences and Natural Resources Research, Chinese Academy of Sciences (IGSNGRR, CAS), under the supervision of Associate Professor [Zhaofei Liu](https://www.researchgate.net/profile/Zhaofei-Liu-3). I received my Bachelor's degree from the College of Geography and Environment, Shandong Normal University(SDNU), where I was advised by Professor [Houfeng Liu](http://www.pre.sdnu.edu.cn/info/1029/2916.htm).
 
 If you are interested in any aspect of me, I would love to chat and collaborate, please email me at - zhushengli1019@outlook.com
 
@@ -27,7 +27,7 @@ If you are interested in any aspect of me, I would love to chat and collaborate,
 ## Research Interests
 
 - Hydrology and Water Rsesources
-- Large-Scale Hydrologic Simulation and Prediction
+- Large-Scale Hydrological Simulation and Prediction
 - Rainfall-Runoff Modeling
 - Remote Sensing
 - Cold Regions Hydrological Processes
