@@ -37,6 +37,8 @@ If you are interested in any aspect of me, I would love to chat and collaborate,
 
 ## News
 
+- **May 2025:** [**Successfully Defends Master’s Thesis and Earns Degree at the Institute of Geographic Sciences and Natural Resources Research, Chinese Academy of Sciences** ](https://shengli-zhu.github.io/blogs/2025/05/blog-post-7/)
+
 - **April 2024:** Our paper **Comprehensive quantitative assessment of the performance of fourteen satellite precipitation products over Chinese mainland** is accepted by Climate Dynamics.
 
 - **Sep 2023:** Our paper **Relationship between the North Atlantic sea surface temperature and the summer extreme high temperature in the Beijing-Tianjin-Hebei region, China** is accepted by Urban Climate.
