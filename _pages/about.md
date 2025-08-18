@@ -13,13 +13,13 @@ redirect_from:
 
 Here is **Shengli Zhu (Victor, 朱胜利)**.
 
-I am currently a third-year master's student at the Institute of Geographic Sciences and Natural Resources Research, Chinese Academy of Sciences (IGSNGRR, CAS), under the supervision of Associate Professor [Zhaofei Liu](https://www.researchgate.net/profile/Zhaofei-Liu-3). I received my Bachelor's degree from the College of Geography and Environment, Shandong Normal University(SDNU), where I was advised by Professor [Houfeng Liu](http://www.pre.sdnu.edu.cn/info/1029/2916.htm).
+I recently obtained my Master of Science degree in Natural Resource Science from the Institute of Geographic Sciences and Natural Resources Research, Chinese Academy of Sciences (IGSNRR, CAS), under the supervision of Associate Professor [Zhaofei Liu](https://www.researchgate.net/profile/Zhaofei-Liu-3). I received my Bachelor's degree from the College of Geography and Environment, Shandong Normal University(SDNU), where I was advised by Professor [Houfeng Liu](http://www.pre.sdnu.edu.cn/info/1029/2916.htm).
 
 If you are interested in any aspect of me, I would love to chat and collaborate, please email me at - zhushengli1019@outlook.com
 
 ## Education
 
-- **Sep 2022 - Present:** Institute of Geographic Sciences and Natural Resources Research, Chinese Academy of Sciences, M.S. in Hydrology and Water Resource
+- **Sep 2022 - Jun 2025:** Institute of Geographic Sciences and Natural Resources Research, Chinese Academy of Sciences, M.S. in Hydrology and Water Resource
 - **Sep 2018 - Jun 2022:** Shandong Normal University, B.S. in Geographic Science
 
 ---
@@ -28,7 +28,7 @@ If you are interested in any aspect of me, I would love to chat and collaborate,
 
 - Hydrology and Water Rsesources
 - Large-Scale Hydrological Simulation and Prediction
-- Rainfall-Runoff Modeling
+- Rainfall-Runoff Modelling
 - Remote Sensing
 - Cold Regions Hydrological Processes
 - Deep Learning
