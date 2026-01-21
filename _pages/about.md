@@ -13,7 +13,7 @@ redirect_from:
 
 Here is **Shengli Zhu (Victor, 朱胜利)**.
 
-I am currently a Ph.D. student at King Abdullah University of Science and Technology (KAUST), under the supervision of Professor [Hylke Beck](https://www.kaust.edu.sa/en/study/faculty/hylke-beck). I obtained my Master of Science degree in Natural Resource Science from the Institute of Geographic Sciences and Natural Resources Research, Chinese Academy of Sciences (IGSNRR, CAS), under the supervision of Associate Professor [Zhaofei Liu](https://www.researchgate.net/profile/Zhaofei-Liu-3). I received my Bachelor's degree from the College of Geography and Environment, Shandong Normal University (SDNU), where I was advised by Professor [Houfeng Liu](http://www.pre.sdnu.edu.cn/info/1029/2916.htm). If you are interested in any aspect of me, I would love to chat and collaborate, please email me at - zhushengli1019@outlook.com 
+I am currently a Ph.D. student at King Abdullah University of Science and Technology (KAUST), under the supervision of Professor [Hylke Beck](https://www.kaust.edu.sa/en/study/faculty/hylke-beck). I obtained my Master of Science degree in Natural Resource Science from the Institute of Geographic Sciences and Natural Resources Research, Chinese Academy of Sciences (IGSNRR, CAS), under the supervision of Associate Professor [Zhaofei Liu](https://www.researchgate.net/profile/Zhaofei-Liu-3). I received my Bachelor's degree from the College of Geography and Environment, Shandong Normal University (SDNU), where I was advised by Professor [Houfeng Liu](http://www.pre.sdnu.edu.cn/info/1029/2916.htm).
 
 If you are interested in any aspect of me, I would love to chat and collaborate, please email me at - zhushengli1019@outlook.com
 
