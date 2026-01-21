@@ -13,12 +13,13 @@ redirect_from:
 
 Here is **Shengli Zhu (Victor, 朱胜利)**.
 
-I recently obtained my Master of Science degree in Natural Resource Science from the Institute of Geographic Sciences and Natural Resources Research, Chinese Academy of Sciences (IGSNRR, CAS), under the supervision of Associate Professor [Zhaofei Liu](https://www.researchgate.net/profile/Zhaofei-Liu-3). I received my Bachelor's degree from the College of Geography and Environment, Shandong Normal University(SDNU), where I was advised by Professor [Houfeng Liu](http://www.pre.sdnu.edu.cn/info/1029/2916.htm).
+I am currently a Ph.D. student at King Abdullah University of Science and Technology (KAUST), under the supervision of Professor [Hylke Beck](https://www.kaust.edu.sa/en/study/faculty/hylke-beck). I obtained my Master of Science degree in Natural Resource Science from the Institute of Geographic Sciences and Natural Resources Research, Chinese Academy of Sciences (IGSNRR, CAS), under the supervision of Associate Professor [Zhaofei Liu](https://www.researchgate.net/profile/Zhaofei-Liu-3). I received my Bachelor's degree from the College of Geography and Environment, Shandong Normal University (SDNU), where I was advised by Professor [Houfeng Liu](http://www.pre.sdnu.edu.cn/info/1029/2916.htm). If you are interested in any aspect of me, I would love to chat and collaborate, please email me at - zhushengli1019@outlook.com 
 
 If you are interested in any aspect of me, I would love to chat and collaborate, please email me at - zhushengli1019@outlook.com
 
 ## Education
 
+- **Jan 2026 -  Present:** King Abdullah University of Science and Technology (KAUST), Ph.D. Student
 - **Sep 2022 - Jun 2025:** Institute of Geographic Sciences and Natural Resources Research, Chinese Academy of Sciences, M.S. in Hydrology and Water Resource
 - **Sep 2018 - Jun 2022:** Shandong Normal University, B.S. in Geographic Science
 
@@ -28,7 +29,7 @@ If you are interested in any aspect of me, I would love to chat and collaborate,
 
 - Hydrology and Water Rsesources
 - Large-Scale Hydrological Simulation and Prediction
-- Rainfall-Runoff Modelling
+- Rainfall-Runoff Modeling
 - Remote Sensing
 - Cold Regions Hydrological Processes
 - Deep Learning
@@ -36,6 +37,8 @@ If you are interested in any aspect of me, I would love to chat and collaborate,
 ---
 
 ## News
+
+- **Jan 2026:** Joins Prof. Hylke Beck's group at King Abdullah University of Science and Technology (KAUST) as a Ph.D. student.
 
 - **May 2025:** [**Successfully Defends Master’s Thesis and Earns Degree at the Institute of Geographic Sciences and Natural Resources Research, Chinese Academy of Sciences** ](https://shengli-zhu.github.io/blogs/2025/05/blog-post-7/)
 
