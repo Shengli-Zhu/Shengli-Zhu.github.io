@@ -1,0 +1,9 @@
+<ul class="contact{% if include.extra %} {{ include.extra }}{% endif %}" aria-label="Contact">
+  {%- for s in site.data.social -%}
+  <li>
+    <a class="contact-link" href="{{ s.url }}"{% unless s.id == "email" %} target="_blank" rel="noopener"{% endunless %} aria-label="{{ s.label }}: {{ s.display }}" data-tip="{{ s.display }}">
+      {%- capture icon %}icons/{{ s.id }}.svg{% endcapture -%}{% include {{ icon }} %}
+    </a>
+  </li>
+  {%- endfor -%}
+</ul>

@@ -1,0 +1,140 @@
+[
+ {
+  "name": "Water Resources Research",
+  "group": "core",
+  "issns": [
+   "0043-1397",
+   "1944-7973"
+  ],
+  "short": "WRR"
+ },
+ {
+  "name": "Hydrology and Earth System Sciences",
+  "group": "core",
+  "issns": [
+   "1027-5606",
+   "1607-7938"
+  ],
+  "short": "HESS"
+ },
+ {
+  "name": "Journal of Hydrometeorology",
+  "group": "core",
+  "issns": [
+   "1525-7541",
+   "1525-755X"
+  ],
+  "short": "J. Hydrometeorol."
+ },
+ {
+  "name": "Nature",
+  "group": "broad",
+  "issns": [
+   "0028-0836",
+   "1476-4687"
+  ],
+  "short": "Nature"
+ },
+ {
+  "name": "Science",
+  "group": "broad",
+  "issns": [
+   "0036-8075",
+   "0193-4511",
+   "1095-9203"
+  ],
+  "short": "Science"
+ },
+ {
+  "name": "Nature Water",
+  "group": "broad",
+  "issns": [
+   "2731-6084"
+  ],
+  "short": "Nature Water"
+ },
+ {
+  "name": "Nature Geoscience",
+  "group": "broad",
+  "issns": [
+   "1752-0894",
+   "1752-0908"
+  ],
+  "short": "Nat. Geosci."
+ },
+ {
+  "name": "Nature Communications",
+  "group": "broad",
+  "issns": [
+   "2041-1723"
+  ],
+  "short": "Nat. Commun."
+ },
+ {
+  "name": "Nature Climate Change",
+  "group": "broad",
+  "issns": [
+   "1758-678X",
+   "1758-6798"
+  ],
+  "short": "Nat. Clim. Change"
+ },
+ {
+  "name": "Communications Earth & Environment",
+  "group": "broad",
+  "issns": [
+   "2662-4435"
+  ],
+  "short": "Commun. Earth Environ."
+ },
+ {
+  "name": "Science Advances",
+  "group": "broad",
+  "issns": [
+   "2375-2548"
+  ],
+  "short": "Sci. Adv."
+ },
+ {
+  "name": "Geophysical Research Letters",
+  "group": "broad",
+  "issns": [
+   "0094-8276",
+   "1944-8007"
+  ],
+  "short": "GRL"
+ },
+ {
+  "name": "Earth's Future",
+  "group": "broad",
+  "issns": [
+   "2328-4277"
+  ],
+  "short": "Earth's Future"
+ },
+ {
+  "name": "Weather and Climate Extremes",
+  "group": "broad",
+  "issns": [
+   "2212-0947"
+  ],
+  "short": "Weather Clim. Extremes"
+ },
+ {
+  "name": "Scientific Data",
+  "group": "data",
+  "issns": [
+   "2052-4463"
+  ],
+  "short": "Sci. Data"
+ },
+ {
+  "name": "Earth System Science Data",
+  "group": "data",
+  "issns": [
+   "1866-3508",
+   "1866-3516"
+  ],
+  "short": "ESSD"
+ }
+]

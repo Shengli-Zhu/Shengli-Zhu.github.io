@@ -1,0 +1,8 @@
+<nav class="nav" aria-label="Main">
+  <span class="nav-lens" aria-hidden="true"></span>
+  {%- for item in site.nav -%}
+    {%- if item.collection -%}{%- assign coll = site[item.collection] -%}{%- if coll == nil or coll.size == 0 -%}{%- continue -%}{%- endif -%}{%- endif -%}
+    {%- assign here = false -%}{%- if page.url contains item.url -%}{%- assign here = true -%}{%- endif -%}
+    <a href="{{ item.url | relative_url }}"{% if here %} aria-current="page"{% endif %}>{{ item.title }}</a>
+  {%- endfor -%}
+</nav>

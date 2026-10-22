@@ -1,0 +1,16 @@
+---
+layout: default
+---
+{%- capture kicker %}Reading note · {{ page.paper_authors }} ({{ page.paper_year }}){% endcapture -%}
+{% include band.html title=page.paper_title kicker=kicker long=true %}
+<main id="main" class="wrap main post">
+  <aside class="post-aside">
+    <p><a href="{{ '/reading-notes/' | relative_url }}">All reading notes</a></p>
+    <p><em>{{ page.paper_venue }}</em>{% if page.paper_doi %}<br><a href="https://doi.org/{{ page.paper_doi }}" target="_blank" rel="noopener">doi.org/{{ page.paper_doi }}</a>{% endif %}</p>
+    <p>Notes written {{ page.written | date: "%-d %B %Y" }}</p>
+  </aside>
+  <article class="prose">
+    {% if page.takeaway %}<blockquote><p>{{ page.takeaway }}</p></blockquote>{% endif %}
+    {{ content }}
+  </article>
+</main>

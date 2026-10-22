@@ -1,0 +1,9 @@
+{%- assign src = '/assets/img/blog/' | append: page.cover -%}
+{%- assign meta = site.data.photos[page.cover] -%}
+<header class="cover">
+  <img class="cover-img" src="{{ src | append: '-1600.jpg' | relative_url }}" srcset="{{ src | append: '-800.jpg' | relative_url }} 800w, {{ src | append: '-1600.jpg' | relative_url }} 1600w" sizes="100vw" width="{{ meta.w }}" height="{{ meta.h }}" fetchpriority="high" alt=""{% if page.cover_pos %} style="object-position: {{ page.cover_pos }}"{% endif %}>
+  <div class="wrap cover-title">
+    <p class="band-kicker">{{ include.kicker }}</p>
+    <h1 class="band-h1 band-h1-long">{{ page.title }}</h1>
+  </div>
+</header>

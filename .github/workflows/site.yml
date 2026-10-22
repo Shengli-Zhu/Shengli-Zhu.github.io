@@ -1,0 +1,61 @@
+name: Build and deploy site
+
+on:
+  push:
+    branches: [master]
+  schedule:
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  actions: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Collect Hydro Digest from Crossref
+        run: >
+          python tools/hydro_digest/build.py --days 90
+          --out _data/hydro_digest.json
+          --public assets/data/hydro-digest.json
+          --fallback-url https://shengli-zhu.github.io/assets/data/hydro-digest.json
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+      - name: Build with Jekyll
+        run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+      - uses: actions/upload-pages-artifact@v3
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+
+  keepalive:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Keep the daily schedule enabled without committing
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/site.yml/enable"
+        env:
+          GH_TOKEN: ${{ github.token }}

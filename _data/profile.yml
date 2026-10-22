@@ -1,0 +1,38 @@
+name: Shengli Zhu
+name_full: Shengli Zhu (Victor, 朱胜利)
+photo: /assets/img/profile.jpg
+bio: >-
+  I am a PhD student in hydrology at KAUST, working with Prof. Hylke Beck. My research focuses on how to observe
+  precipitation, how it turns into streamflow in catchment, and how well hydrological models and machine learning can
+  predict streamflow at global scale. For my master's study I simulated the hydrological processes of the Source Region
+  of the Yellow River on the Tibetan Plateau with satellite precipitation products.
+education:
+  - years: 2026 – present
+    degree: Ph.D. student
+    place: King Abdullah University of Science and Technology (KAUST)
+    advisor: Prof. Hylke Beck
+    advisor_url: https://www.kaust.edu.sa/en/study/faculty/hylke-beck
+    logos:
+      - { name: King Abdullah University of Science and Technology, url: "https://www.kaust.edu.sa/en/", src: /assets/img/logos/kaust.svg }
+  - years: 2022 – 2025
+    degree: M.S. in Natural Resource Science
+    place: Institute of Geographic Sciences and Natural Resources Research, Chinese Academy of Sciences
+    advisor: Prof. Zhaofei Liu
+    advisor_url: https://igsnrr.cas.cn/sourcedb/zw/zjrck/kygg/zrzy/201404/t20140410_4088376.html
+    logos:
+      - { name: Institute of Geographic Sciences and Natural Resources Research, url: "http://english.igsnrr.cas.cn/", src: /assets/img/logos/igsnrr.png }
+      - { name: Chinese Academy of Sciences, url: "https://english.cas.cn/", src: /assets/img/logos/cas.png }
+  - years: 2018 – 2022
+    degree: B.S. in Geographic Science
+    place: College of Geography and Environment, Shandong Normal University
+    advisor: Prof. Houfeng Liu
+    advisor_url: http://www.pre.sdnu.edu.cn/info/1111/18401.htm
+    logos:
+      - { name: Shandong Normal University, url: "https://english.sdnu.edu.cn/", src: /assets/img/logos/sdnu.svg }
+interests:
+  - Hydrology and Water Resources
+  - Large-Scale Hydrological Simulation and Prediction
+  - Rainfall-Runoff Modeling
+  - Remote Sensing
+  - Cold Regions Hydrological Processes
+  - Deep Learning

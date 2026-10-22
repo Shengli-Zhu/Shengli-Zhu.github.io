@@ -1,0 +1,24 @@
+- id: email
+  label: Email
+  display: shengli.zhu@kaust.edu.sa
+  url: mailto:shengli.zhu@kaust.edu.sa
+- id: googlescholar
+  label: Google Scholar
+  display: Google Scholar profile
+  url: https://scholar.google.com/citations?user=sEmk9uMAAAAJ
+- id: orcid
+  label: ORCID
+  display: 0000-0002-2845-910X
+  url: https://orcid.org/0000-0002-2845-910X
+- id: researchgate
+  label: ResearchGate
+  display: ResearchGate profile
+  url: https://www.researchgate.net/profile/Shengli-Zhu-2
+- id: linkedin
+  label: LinkedIn
+  display: LinkedIn profile
+  url: https://www.linkedin.com/in/shengli-zhu-699822302
+- id: x
+  label: X
+  display: "@Shengli_Zhu"
+  url: https://x.com/Shengli_Zhu

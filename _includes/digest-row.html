@@ -1,0 +1,19 @@
+{%- assign p = include.paper -%}
+<li class="row" data-topics="{{ p.topics | join: '|' }}" data-date="{{ p.date }}" data-doi="{{ p.doi }}" data-journal="{{ p.journal_short | default: p.journal }}">
+  {%- if include.journal_key %}
+  <span class="row-key row-journal">{{ p.journal_short | default: p.journal }}</span>
+  {%- else %}
+  <span class="row-key">{{ p.date | date: "%-d %b" }}</span>
+  {%- endif %}
+  <div class="row-body">
+    <p class="row-title"><a href="{{ p.url }}" target="_blank" rel="noopener">{{ p.title }}</a></p>
+    <p class="row-meta">{{ p.authors | join: ", " }}{% if p.more_authors %} et al.{% endif %} · <em>{{ p.journal }}</em></p>
+    {%- if include.snippet and p.snippet != "" %}
+    <p class="row-note">{{ p.snippet }}</p>
+    {%- if p.abstract and p.abstract != "" %}
+    <details class="abstract"><summary>Full abstract</summary><p>{{ p.abstract }}</p></details>
+    {%- endif %}
+    {%- endif %}
+    <p class="row-meta topics">{{ p.topics | join: " · " }}</p>
+  </div>
+</li>

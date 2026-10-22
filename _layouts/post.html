@@ -1,0 +1,18 @@
+---
+layout: default
+---
+{%- capture d %}{{ page.date | date: "%-d %B %Y" }}{% endcapture -%}
+{% if page.cover %}{% include cover.html kicker=d %}{% else %}{% include band.html title=page.title kicker=d long=true %}{% endif %}
+<main id="main" class="wrap main post">
+  <aside class="post-aside">
+    <p><a href="{{ '/blog/' | relative_url }}">All posts</a></p>
+    {% if page.tags.size > 0 %}<p>{{ page.tags | join: " · " }}</p>{% endif %}
+  </aside>
+  <article class="prose">
+    {{ content }}
+  </article>
+  <nav class="post-nav" aria-label="More posts">
+    {% if page.previous %}<a href="{{ page.previous.url | relative_url }}"><span>Older</span>{{ page.previous.title }}</a>{% endif %}
+    {% if page.next %}<a class="next" href="{{ page.next.url | relative_url }}"><span>Newer</span>{{ page.next.title }}</a>{% endif %}
+  </nav>
+</main>

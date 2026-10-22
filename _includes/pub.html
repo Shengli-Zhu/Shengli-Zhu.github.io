@@ -1,0 +1,8 @@
+{%- assign pub = include.pub -%}
+<li class="row">
+  <span class="row-key">{{ pub.year }}</span>
+  <div class="row-body">
+    <p class="row-title"><a href="{{ pub.url }}" target="_blank" rel="noopener">{{ pub.title }}</a></p>
+    <p class="row-meta">{% for a in pub.authors %}{% if a == site.data.profile.name %}<span class="me">{{ a }}</span>{% else %}{{ a }}{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %} · <em>{{ pub.venue }}</em></p>
+  </div>
+</li>

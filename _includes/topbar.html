@@ -1,0 +1,10 @@
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    {%- if page.url == "/" %}
+    <a class="topbar-mark" href="#main">PhD student in Hydrology <span>· KAUST</span></a>
+    {%- else %}
+    <a class="wordmark" href="{{ '/' | relative_url }}">Shengli Zhu</a>
+    {%- endif %}
+    <div class="bar-right">{% include nav.html %}{% unless page.url == "/" %}{% include contact.html %}{% endunless %}</div>
+  </div>
+</header>

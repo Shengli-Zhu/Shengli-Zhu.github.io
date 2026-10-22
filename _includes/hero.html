@@ -1,0 +1,14 @@
+<section class="hero" id="hero" data-assets="{{ '/assets/hero/' | relative_url }}">
+  <canvas class="hero-canvas" aria-hidden="true"></canvas>
+  <div class="hero-flash" aria-hidden="true"></div>
+  <div class="hero-labels" aria-hidden="true"></div>
+  <div class="hero-text">
+    <h1 class="hero-name"><span>Shengli</span><span>Zhu</span></h1>
+    <div class="hero-under">
+      {% include contact.html extra="hero-contact" %}
+      <a class="hero-digest" href="{{ '/hydro-digest/' | relative_url }}">What's new in hydrology this week?<span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+  <a class="hero-cue" href="#main" aria-label="Scroll down"><span></span><span></span><span></span></a>
+</section>
+<script type="module" src="{{ '/assets/js/hero.js' | relative_url }}"></script>

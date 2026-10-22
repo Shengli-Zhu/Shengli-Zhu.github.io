@@ -1,0 +1,7 @@
+<header class="band">
+  <div class="wrap band-title">
+    {% if include.kicker %}<p class="band-kicker">{{ include.kicker }}</p>{% endif %}
+    <h1 class="{% if include.long %}band-h1 band-h1-long{% else %}band-h1{% endif %}">{{ include.title }}</h1>
+    {% if include.intro %}<p class="band-intro">{{ include.intro }}</p>{% endif %}
+  </div>
+</header>

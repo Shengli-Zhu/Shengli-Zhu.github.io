@@ -1,0 +1,70 @@
+title: Shengli Zhu
+description: PhD student in hydrology at King Abdullah University of Science and Technology (KAUST).
+url: https://shengli-zhu.github.io
+baseurl: ""
+lang: en
+timezone: Asia/Riyadh
+
+author:
+  name: Shengli Zhu
+  email: shengli.zhu@kaust.edu.sa
+
+goatcounter: https://shenglizhu.goatcounter.com/count
+
+nav:
+  - title: Publications
+    url: /publications/
+  - title: Hydro Digest
+    url: /hydro-digest/
+  - title: HyDraw
+    url: /hydraw/
+    collection: hydraw
+  - title: Reading Notes
+    url: /reading-notes/
+    collection: reading_notes
+  - title: Blog
+    url: /blog/
+  - title: CV
+    url: /cv/
+
+collections:
+  reading_notes:
+    output: true
+    permalink: /reading-notes/:name/
+  hydraw:
+    output: true
+    permalink: /hydraw/:path/
+
+defaults:
+  - scope: { path: "", type: posts }
+    values: { layout: post }
+  - scope: { path: "", type: reading_notes }
+    values: { layout: reading-note }
+  - scope: { path: "", type: hydraw }
+    values: { layout: hydraw-entry }
+  - scope: { path: "" }
+    values: { layout: page }
+
+permalink: /blogs/:year/:month/:title/
+markdown: kramdown
+kramdown:
+  input: GFM
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+
+plugins:
+  - jekyll-redirect-from
+  - jekyll-sitemap
+  - jekyll-feed
+
+feed:
+  path: feed.xml
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - Makefile
+  - README.md
+  - tools
+  - tests
+  - vendor
+  - .bundle

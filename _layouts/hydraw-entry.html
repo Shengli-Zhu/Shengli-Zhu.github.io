@@ -1,0 +1,20 @@
+---
+layout: default
+---
+{%- assign src = page.source -%}
+{% include band.html title=page.title kicker=page.figure_type long=true %}
+<main id="main" class="wrap main post">
+  <aside class="post-aside hydraw-source">
+    <p><a href="{{ '/hydraw/' | relative_url }}">All figures</a></p>
+    <p class="hydraw-cite">{{ src.authors | join: ", " }} ({{ src.year }}). {{ src.title }}. <em>{{ src.journal }}</em>. <a href="https://doi.org/{{ src.doi }}" target="_blank" rel="noopener">doi.org/{{ src.doi }}</a></p>
+    <p>{{ src.figure }}{% if src.version %} · {{ src.version }}{% endif %}<br>License: <a href="{{ src.license_url }}" target="_blank" rel="noopener">{{ src.license }}</a></p>
+    <p><a href="{{ '/hydraw/code/' | append: page.code | relative_url }}" download>Download the script</a></p>
+  </aside>
+  <article class="prose">
+    <figure class="photo hydraw-original">
+      <a href="https://doi.org/{{ src.doi }}" target="_blank" rel="noopener"><img src="{{ page.image | relative_url }}" alt="{{ src.figure }} of {{ src.authors[0] | split: ' ' | last }} et al. ({{ src.year }}), {{ src.title }}" loading="lazy" decoding="async"></a>
+      <figcaption>{{ src.figure }} from {{ src.authors[0] | split: " " | last }} et al. ({{ src.year }}), <em>{{ src.journal }}</em>, reproduced unchanged under <a href="{{ src.license_url }}" target="_blank" rel="noopener">{{ src.license }}</a>.</figcaption>
+    </figure>
+    {{ content }}
+  </article>
+</main>

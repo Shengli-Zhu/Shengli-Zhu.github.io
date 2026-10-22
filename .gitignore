@@ -1,0 +1,11 @@
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+/vendor/
+.bundle/
+_data/hydro_digest.json
+assets/data/
+__pycache__/
+.pytest_cache/
+.vscode/

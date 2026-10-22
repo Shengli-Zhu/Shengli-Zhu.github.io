@@ -1,0 +1,72 @@
+---
+layout: default
+---
+{%- assign p = site.data.profile -%}
+{% include hero.html %}
+<main id="main" class="wrap main home">
+  <section class="section" aria-labelledby="about-h">
+    <div class="section-side">
+      <h2 class="section-h" id="about-h">About</h2>
+      <img class="about-photo" src="{{ p.photo | relative_url }}" width="720" height="900" alt="Portrait of {{ p.name }}">
+    </div>
+    <div class="section-body about">
+      <p class="about-name">{{ p.name_full }}</p>
+      <p class="about-bio">{{ p.bio }}</p>
+      <ul class="edu">
+        {%- for e in p.education %}
+        <li><span class="yrs">{{ e.years }}</span><span class="edu-what"><strong>{{ e.degree }}</strong>, {{ e.place }}<br><span class="adv">Supervisor: <a href="{{ e.advisor_url }}" target="_blank" rel="noopener">{{ e.advisor }}</a></span></span>{% if e.logos %}<span class="edu-logos">{% for l in e.logos %}<a class="edu-logo" href="{{ l.url }}" target="_blank" rel="noopener" title="{{ l.name }}" aria-label="{{ l.name }} website"><img src="{{ l.src | relative_url }}" width="44" height="44" alt=""></a>{% endfor %}</span>{% endif %}</li>
+        {%- endfor %}
+      </ul>
+      <div class="interests">
+        <p class="interests-h">Research interests</p>
+        <ul>{% for i in p.interests %}<li>{{ i }}</li>{% endfor %}</ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="news-h">
+    <h2 class="section-h" id="news-h">News</h2>
+    <ul class="section-body rows">
+      {%- for n in site.data.news %}
+      <li class="row"><span class="row-key">{{ n.date }}</span><div class="row-body"><p>{{ n.html }}</p></div></li>
+      {%- endfor %}
+    </ul>
+  </section>
+
+  <section class="section" aria-labelledby="pubs-h">
+    <h2 class="section-h" id="pubs-h"><a href="{{ '/publications/' | relative_url }}">Selected publications</a></h2>
+    <div class="section-body">
+      <ul class="rows">{% for pub in site.data.publications %}{% if pub.selected %}{% include pub.html pub=pub %}{% endif %}{% endfor %}</ul>
+      <p class="section-more"><a href="{{ '/publications/' | relative_url }}">All publications</a></p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="digest-h">
+    <h2 class="section-h" id="digest-h"><a href="{{ '/hydro-digest/' | relative_url }}">From Hydro Digest</a></h2>
+    <div class="section-body">
+      {%- assign d = site.data.hydro_digest -%}
+      {%- if d and d.papers.size > 0 %}
+      <p class="digest-status">Recent papers by other researchers on topics close to my work. Updated daily.</p>
+      <ul class="rows">{% for paper in d.papers limit: 5 %}{% include digest-row.html paper=paper %}{% endfor %}</ul>
+      {%- else %}
+      <p class="digest-status">Recent papers by other researchers on topics close to my work, updated daily.</p>
+      {%- endif %}
+      <p class="section-more"><a href="{{ '/hydro-digest/' | relative_url }}">Open Hydro Digest</a></p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="writing-h">
+    <h2 class="section-h" id="writing-h"><a href="{{ '/blog/' | relative_url }}">Latest writing</a></h2>
+    <div class="section-body">
+      <ul class="rows">
+        {%- for post in site.posts limit: 2 %}
+        <li class="row"><span class="row-key">{{ post.date | date: "%b %Y" }}</span><div class="row-body"><p class="row-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></p><p class="row-meta">Blog</p></div></li>
+        {%- endfor %}
+        {%- assign notes = site.reading_notes | sort: "written" | reverse -%}
+        {%- for note in notes limit: 2 %}
+        <li class="row"><span class="row-key">{{ note.written | date: "%b %Y" }}</span><div class="row-body"><p class="row-title"><a href="{{ note.url | relative_url }}">{{ note.paper_title }}</a></p><p class="row-meta">Reading note · {{ note.paper_authors }} ({{ note.paper_year }})</p></div></li>
+        {%- endfor %}
+      </ul>
+    </div>
+  </section>
+</main>
