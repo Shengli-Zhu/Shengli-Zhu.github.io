@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /assets/img/
+Disallow: /assets/hero/
+Disallow: /images/
+
+Sitemap: https://shengli-zhu.github.io/sitemap.xml
