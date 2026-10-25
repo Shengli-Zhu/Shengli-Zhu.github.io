@@ -176,3 +176,25 @@ def test_hydraw_entries_cite_license_and_code():
     assert all(f'/hydraw/{slug}/' in listing for slug, _ in entries)
     nav = [a['href'] for t, a in parse('blog/index.html') if t == 'a']
     assert nav.index('/hydro-digest/') < nav.index('/hydraw/') < nav.index('/blog/')
+
+
+def test_hydro_digest_topic_pages():
+    import json
+    import sys
+    sys.path.insert(0, str(ROOT / 'tools' / 'hydro_digest'))
+    from rules import TOPICS
+    topics = sorted((yaml.safe_load(p.read_text().split('---')[1]) | {'slug': p.stem} for p in (ROOT / '_digest_topics').glob('*.md')), key=lambda t: t['order'])
+    assert [t['title'] for t in topics] == list(TOPICS)
+    papers = json.loads((ROOT / '_data' / 'hydro_digest.json').read_text())['papers']
+    landing = [a['href'] for t, a in parse('hydro-digest/index.html') if t == 'a' and a.get('class') == 'topic-link']
+    assert landing == [f"/hydro-digest/{t['slug']}/" for t in topics]
+    for t in topics:
+        html = text(f"hydro-digest/{t['slug']}/index.html")
+        assert html.count('<li class="row"') == sum(t['title'] in p['topics'] for p in papers), t['title']
+        buttons = [a for tag, a in parse(f"hydro-digest/{t['slug']}/index.html") if tag == 'a' and a.get('class') == 'topic-btn']
+        assert len(buttons) == len(topics) and [a.get('aria-current') for a in buttons].count('page') == 1
+        assert 'href="/hydro-digest/"' in html.split('band-title', 1)[1].split('</header>')[0]
+    latest = text('hydro-digest/index.html').split('id="latest-h"')[1]
+    days = sorted({p['date'] for p in papers}, reverse=True)[:3]
+    assert latest.count('class="latest-day"') == len(days)
+    assert latest.count('<li class="row"') == sum(p['date'] in days for p in papers)

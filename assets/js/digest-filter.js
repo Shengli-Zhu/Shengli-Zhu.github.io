@@ -1,7 +1,8 @@
 (function () {
+  const list = document.querySelector('.digest');
   const groups = [...document.querySelectorAll('.digest-group')];
-  const rows = [...document.querySelectorAll('.digest-group .row')];
-  const facets = [...document.querySelectorAll('.facet')];
+  const rows = [...document.querySelectorAll('.digest .row')];
+  const facets = [...document.querySelectorAll('button.facet')];
   const search = document.getElementById('digest-q');
   const newBtn = document.querySelector('.digest-new');
   const empty = document.querySelector('.digest-empty');
@@ -13,24 +14,26 @@
   const NS = 'http://www.w3.org/2000/svg';
   const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const fmt = d => `${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]}`;
-  const state = { topic: '', journal: '', q: '', fresh: false };
+  const state = { journal: '', q: '', fresh: false };
   const text = new Map(rows.map(r => [r, r.textContent.toLowerCase()]));
   const panel = document.querySelector('.facet-panel');
   if (panel && window.matchMedia('(max-width: 820px)').matches) panel.open = false;
+  const end = fig ? Date.parse(fig.dataset.end + 'T00:00:00Z') : 0;
+  const n = fig ? Number(fig.dataset.days) : 0;
+  const ago = s => Math.round((end - Date.parse(s + 'T00:00:00Z')) / 864e5);
 
-  // Papers this browser has not seen before; the baseline is kept for the whole visit.
+  // Papers this browser has not seen on this page before; the baseline is kept for the whole visit.
   const store = (area, key, value) => { try { return value === undefined ? window[area].getItem(key) : window[area].setItem(key, value); } catch (e) { return null; } };
-  const KEY = 'hydro-digest-seen';
-  let baseline = store('sessionStorage', KEY);
-  if (baseline === null) {
-    baseline = store('localStorage', KEY);
-    if (baseline !== null) store('sessionStorage', KEY, baseline);
-  }
-  const dois = rows.map(r => r.dataset.doi);
-  store('localStorage', KEY, JSON.stringify(dois));
-  if (baseline) {
-    let seen;
-    try { seen = new Set(JSON.parse(baseline)); } catch (e) { seen = null; }
+  const KEY = list && list.dataset.seen;
+  if (KEY && rows.length) {
+    let baseline = store('sessionStorage', KEY);
+    if (baseline === null) {
+      baseline = store('localStorage', KEY);
+      if (baseline !== null) store('sessionStorage', KEY, baseline);
+    }
+    store('localStorage', KEY, JSON.stringify(rows.map(r => r.dataset.doi)));
+    let seen = null;
+    try { seen = baseline && new Set(JSON.parse(baseline)); } catch (e) { seen = null; }
     if (seen) {
       const fresh = rows.filter(r => !seen.has(r.dataset.doi));
       fresh.forEach(r => {
@@ -47,25 +50,72 @@
     }
   }
 
+  const el = (tag, attrs, t) => {
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    if (t !== undefined) e.textContent = t;
+    return e;
+  };
+
+  // A smooth line through the points that never dips below the baseline.
+  function curve(pts, base) {
+    let d = `M${pts[0][0]},${pts[0][1]}`;
+    for (let i = 0; i < pts.length - 1; i++) {
+      const p0 = pts[Math.max(i - 1, 0)], p1 = pts[i], p2 = pts[i + 1], p3 = pts[Math.min(i + 2, pts.length - 1)];
+      const c1y = Math.min(base, p1[1] + (p2[1] - p0[1]) / 6), c2y = Math.min(base, p2[1] - (p3[1] - p1[1]) / 6);
+      d += ` C${p1[0] + (p2[0] - p0[0]) / 6},${c1y} ${p2[0] - (p3[0] - p1[0]) / 6},${c2y} ${p2[0]},${p2[1]}`;
+    }
+    return d;
+  }
+
+  // Papers per day drawn as a hydrograph: the daily count is the discharge.
+  function drawFlow() {
+    if (!fig) return;
+    const svg = fig.querySelector('svg');
+    const days = Array.from({ length: n }, (_, i) => new Date(end - (n - 1 - i) * 864e5));
+    const counts = new Array(n).fill(0);
+    const dates = fig.dataset.dates ? fig.dataset.dates.split(' ') : rows.filter(r => !r.hidden).map(r => r.dataset.date);
+    dates.forEach(s => { const k = ago(s); if (k >= 0 && k < n) counts[n - 1 - k]++; });
+    const W = svg.clientWidth, H = svg.clientHeight, top = 14, bottom = 22;
+    const max = Math.max(4, ...counts);
+    const x = i => (i + 0.5) * W / n;
+    const y = c => top + (H - top - bottom) * (1 - c / max);
+    const pts = counts.map((c, i) => [x(i), y(c)]);
+    pts.unshift([0, pts[0][1]]);
+    pts.push([W, pts[pts.length - 1][1]]);
+    const line = curve(pts, y(0));
+    svg.replaceChildren();
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.append(el('line', { class: 'flow-grid', x1: 0, x2: W, y1: y(max), y2: y(max) }));
+    svg.append(el('text', { class: 'flow-label', x: 0, y: y(max) - 4 }, `${max} papers a day`));
+    svg.append(el('path', { class: 'flow-area', d: `${line} L${W},${y(0)} L0,${y(0)} Z` }));
+    svg.append(el('path', { class: 'flow-line', d: line }));
+    svg.append(el('line', { class: 'flow-base', x1: 0, x2: W, y1: y(0), y2: y(0) }));
+    const step = 7 * Math.ceil(70 / (7 * W / n));
+    days.forEach((d, i) => {
+      if ((n - 1 - i) % step === 0) svg.append(el('text', { class: 'flow-label', x: x(i), y: H - 4, 'text-anchor': i === n - 1 ? 'end' : 'middle' }, fmt(d)));
+      const hit = el('rect', { class: 'flow-hit', x: i * W / n, y: top, width: W / n, height: y(0) - top });
+      hit.append(el('title', {}, `${fmt(d)}: ${counts[i]} paper${counts[i] === 1 ? '' : 's'}`));
+      svg.append(hit);
+    });
+  }
+
   const matches = (r, skip) =>
-    (skip === 'topic' || !state.topic || r.dataset.topics.split('|').includes(state.topic)) &&
     (skip === 'journal' || !state.journal || r.dataset.journal === state.journal) &&
     (!state.q || text.get(r).includes(state.q)) &&
     (!state.fresh || r.classList.contains('is-new'));
 
   function updateFacets() {
-    for (const kind of ['topic', 'journal']) {
-      const own = facets.filter(f => f.dataset.kind === kind);
-      const pool = rows.filter(r => matches(r, kind));
-      const n = own.map(f => pool.filter(r => kind === 'topic' ? r.dataset.topics.split('|').includes(f.dataset.value) : r.dataset.journal === f.dataset.value).length);
-      const max = Math.max(1, ...n);
-      own.forEach((f, i) => {
-        f.querySelector('.facet-n').textContent = n[i];
-        f.style.setProperty('--w', `${(100 * n[i] / max).toFixed(1)}%`);
-        f.classList.toggle('is-empty', n[i] === 0);
-        f.setAttribute('aria-pressed', String(state[kind] === f.dataset.value));
-      });
-    }
+    const pool = rows.filter(r => matches(r, 'journal'));
+    const tally = value => pool.filter(r => r.dataset.journal === value).length;
+    const k = facets.map(f => tally(f.dataset.value));
+    const max = Math.max(1, ...k);
+    facets.forEach((f, i) => {
+      f.querySelector('.facet-n').textContent = k[i];
+      f.style.setProperty('--w', `${(100 * k[i] / max).toFixed(1)}%`);
+      f.classList.toggle('is-empty', k[i] === 0);
+      f.setAttribute('aria-pressed', String(state.journal === f.dataset.value));
+    });
   }
 
   function chip(label, onClear) {
@@ -86,13 +136,12 @@
       g.hidden = k === 0;
       shown += k;
     });
-    const filtered = state.topic || state.journal || state.q || state.fresh;
+    const filtered = state.journal || state.q || state.fresh;
     if (total) total.textContent = shown;
     if (count) count.textContent = filtered ? `${shown} of ${rows.length} papers` : `All ${rows.length} papers`;
     if (active) {
       active.replaceChildren();
       if (state.fresh) active.append(chip('New since your last visit', () => { state.fresh = false; apply(); }));
-      if (state.topic) active.append(chip(state.topic, () => { state.topic = ''; apply(); }));
       if (state.journal) active.append(chip(facets.find(f => f.dataset.value === state.journal).querySelector('.facet-label').textContent, () => { state.journal = ''; apply(); }));
       if (state.q) active.append(chip(`“${search.value.trim()}”`, () => { search.value = ''; state.q = ''; apply(); }));
     }
@@ -103,63 +152,18 @@
     drawFlow();
   }
 
-  // Papers per day drawn as a hydrograph: the daily count is the discharge.
-  function drawFlow() {
-    if (!fig) return;
-    const svg = fig.querySelector('svg');
-    const n = Number(fig.dataset.days), end = Date.parse(fig.dataset.end + 'T00:00:00Z');
-    const days = Array.from({ length: n }, (_, i) => new Date(end - (n - 1 - i) * 864e5));
-    const index = new Map(days.map((d, i) => [d.toISOString().slice(0, 10), i]));
-    const counts = new Array(n).fill(0);
-    rows.forEach(r => { if (!r.hidden && index.has(r.dataset.date)) counts[index.get(r.dataset.date)]++; });
-    const W = svg.clientWidth, H = svg.clientHeight, top = 14, bottom = 22;
-    const max = Math.max(4, ...counts);
-    const x = i => (i + 0.5) * W / n;
-    const y = c => top + (H - top - bottom) * (1 - c / max);
-    const pts = counts.map((c, i) => [x(i), y(c)]);
-    pts.unshift([0, pts[0][1]]);
-    pts.push([W, pts[pts.length - 1][1]]);
-    let line = `M${pts[0][0]},${pts[0][1]}`;
-    for (let i = 0; i < pts.length - 1; i++) {
-      const p0 = pts[Math.max(i - 1, 0)], p1 = pts[i], p2 = pts[i + 1], p3 = pts[Math.min(i + 2, pts.length - 1)];
-      const c1y = Math.min(y(0), p1[1] + (p2[1] - p0[1]) / 6), c2y = Math.min(y(0), p2[1] - (p3[1] - p1[1]) / 6);
-      line += ` C${p1[0] + (p2[0] - p0[0]) / 6},${c1y} ${p2[0] - (p3[0] - p1[0]) / 6},${c2y} ${p2[0]},${p2[1]}`;
-    }
-    const el = (tag, attrs, t) => {
-      const e = document.createElementNS(NS, tag);
-      for (const k in attrs) e.setAttribute(k, attrs[k]);
-      if (t !== undefined) e.textContent = t;
-      return e;
-    };
-    svg.replaceChildren();
-    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
-    svg.append(el('line', { class: 'flow-grid', x1: 0, x2: W, y1: y(max), y2: y(max) }));
-    svg.append(el('text', { class: 'flow-label', x: 0, y: y(max) - 4 }, `${max} papers a day`));
-    svg.append(el('path', { class: 'flow-area', d: `${line} L${W},${y(0)} L0,${y(0)} Z` }));
-    svg.append(el('path', { class: 'flow-line', d: line }));
-    svg.append(el('line', { class: 'flow-base', x1: 0, x2: W, y1: y(0), y2: y(0) }));
-    const step = 7 * Math.ceil(70 / (7 * W / n));
-    days.forEach((d, i) => {
-      if ((n - 1 - i) % step === 0) svg.append(el('text', { class: 'flow-label', x: x(i), y: H - 4, 'text-anchor': i === n - 1 ? 'end' : 'middle' }, fmt(d)));
-      const hit = el('rect', { class: 'flow-hit', x: i * W / n, y: top, width: W / n, height: y(0) - top });
-      hit.append(el('title', {}, `${fmt(d)}: ${counts[i]} paper${counts[i] === 1 ? '' : 's'}`));
-      svg.append(hit);
-    });
-  }
-
   facets.forEach(f => f.addEventListener('click', () => {
-    const kind = f.dataset.kind;
-    state[kind] = state[kind] === f.dataset.value ? '' : f.dataset.value;
+    state.journal = state.journal === f.dataset.value ? '' : f.dataset.value;
     apply();
   }));
   if (search) search.addEventListener('input', () => { state.q = search.value.trim().toLowerCase(); apply(); });
   if (newBtn) newBtn.addEventListener('click', () => { state.fresh = !state.fresh; apply(); });
   if (clear) clear.addEventListener('click', () => {
-    Object.assign(state, { topic: '', journal: '', q: '', fresh: false });
+    Object.assign(state, { journal: '', q: '', fresh: false });
     if (search) search.value = '';
     apply();
   });
   let pending = false;
   window.addEventListener('resize', () => { if (!pending) { pending = true; requestAnimationFrame(() => { pending = false; drawFlow(); }); } });
-  apply();
+  if (groups.length) apply(); else drawFlow();
 })();

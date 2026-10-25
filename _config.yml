@@ -34,6 +34,9 @@ collections:
   hydraw:
     output: true
     permalink: /hydraw/:path/
+  digest_topics:
+    output: true
+    permalink: /hydro-digest/:name/
 
 defaults:
   - scope: { path: "", type: posts }
@@ -42,6 +45,8 @@ defaults:
     values: { layout: reading-note }
   - scope: { path: "", type: hydraw }
     values: { layout: hydraw-entry }
+  - scope: { path: "", type: digest_topics }
+    values: { layout: digest-topic }
   - scope: { path: "" }
     values: { layout: page }
 

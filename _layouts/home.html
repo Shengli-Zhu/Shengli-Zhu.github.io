@@ -46,10 +46,10 @@ layout: default
     <div class="section-body">
       {%- assign d = site.data.hydro_digest -%}
       {%- if d and d.papers.size > 0 %}
-      <p class="digest-status">Recent papers by other researchers on topics close to my work. Updated daily.</p>
+      <p class="digest-status">Recent papers by other researchers on topics close to my work. Updated every six hours.</p>
       <ul class="rows">{% for paper in d.papers limit: 5 %}{% include digest-row.html paper=paper %}{% endfor %}</ul>
       {%- else %}
-      <p class="digest-status">Recent papers by other researchers on topics close to my work, updated daily.</p>
+      <p class="digest-status">Recent papers by other researchers on topics close to my work, updated every six hours.</p>
       {%- endif %}
       <p class="section-more"><a href="{{ '/hydro-digest/' | relative_url }}">Open Hydro Digest</a></p>
     </div>

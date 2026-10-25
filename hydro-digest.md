@@ -1,57 +1,52 @@
 ---
 title: Hydro Digest
 permalink: /hydro-digest/
-intro: Recent papers by other researchers, on topics close to my work. Collected automatically every day from sixteen journals in hydrology and the Earth sciences.
+intro: Recent papers by other researchers, on topics close to my work. Collected automatically every six hours from sixteen journals in hydrology and the Earth sciences.
 ---
 {%- assign d = site.data.hydro_digest -%}
 {%- if d and d.papers.size > 0 %}
+{%- assign end_day = d.generated_at | date: '%Y-%m-%d' -%}
+{%- assign since = end_day | append: ' 12:00:00' | date: '%s' | minus: 518400 | date: '%Y-%m-%d' -%}
+{%- assign week = d.papers | where_exp: "p", "p.date >= since" -%}
 <div class="digest-head">
-  <p class="digest-total"><span class="digest-n">{{ d.papers.size }}</span>papers in the last {{ d.window_days }} days<br>updated {{ d.generated_at | date: "%-d %B %Y" }}{% if d.source != "crossref" %} · today's update did not run, so this is the most recent list available{% endif %}</p>
-  <figure class="flow" data-end="{{ d.generated_at | date: '%Y-%m-%d' }}" data-days="{{ d.window_days }}"><svg role="img" aria-label="Number of papers per day over the last {{ d.window_days }} days"></svg></figure>
+  <p class="digest-total"><span class="digest-n">{{ d.papers.size }}</span>papers in the last {{ d.window_days }} days<br>{{ week.size }} in the last 7 days<br>updated {{ d.generated_at | date: "%-d %B %Y" }}{% if d.source != "crossref" %} · the latest update did not run, so this is the most recent list available{% endif %}</p>
+  <figure class="flow" data-end="{{ end_day }}" data-days="{{ d.window_days }}" data-dates="{{ d.papers | map: 'date' | join: ' ' }}"><svg role="img" aria-label="Number of papers per day over the last {{ d.window_days }} days"></svg></figure>
 </div>
-<div class="digest-facets">
-  <div class="digest-search">
-    <label class="facet-h" for="digest-q">Search</label>
-    <input id="digest-q" type="search" placeholder="Title, author or abstract" autocomplete="off">
-    <button class="digest-new" type="button" aria-pressed="false" hidden></button>
-    <p class="digest-hint">Select a topic or a journal to filter the list. The counts and the curve above follow your selection.</p>
+<section class="section" aria-labelledby="topics-h">
+  <div class="section-side">
+    <h2 class="section-h" id="topics-h">Topics</h2>
+    <p class="digest-status">A paper is listed under at most two topics. Papers that describe a dataset are also listed under Hydrological datasets.</p>
   </div>
-  <details class="facet-panel" open>
-  <summary>Topics and journals</summary>
-  <div class="facet-groups">
-    <div class="facet-group" role="group" aria-labelledby="facet-topic-h">
-      <p class="facet-h" id="facet-topic-h">Topics</p>
-      {%- for t in d.topics %}
-      {%- assign n = 0 -%}{%- for paper in d.papers %}{% if paper.topics contains t %}{% assign n = n | plus: 1 %}{% endif %}{% endfor -%}
-      <button class="facet" type="button" data-kind="topic" data-value="{{ t }}" aria-pressed="false"><span class="facet-label">{{ t }}</span><span class="facet-n">{{ n }}</span><span class="facet-bar"></span></button>
-      {%- endfor %}
-    </div>
-    <div class="facet-group" role="group" aria-labelledby="facet-journal-h">
-      <p class="facet-h" id="facet-journal-h">Journals</p>
-      {%- assign by_journal = d.papers | group_by: "journal" | sort: "size" | reverse -%}
-      {%- for j in by_journal %}
-      <button class="facet" type="button" data-kind="journal" data-value="{{ j.items[0].journal_short | default: j.name }}" aria-pressed="false" title="{{ j.name }}"><span class="facet-label">{{ j.name }}</span><span class="facet-n">{{ j.size }}</span><span class="facet-bar"></span></button>
-      {%- endfor %}
-    </div>
+  <ul class="topic-list">
+  {%- assign topics = site.digest_topics | sort: "order" -%}
+  {%- for t in topics %}
+    {%- assign tp = d.papers | where_exp: "p", "p.topics contains t.title" -%}
+    {%- assign tw = tp | where_exp: "p", "p.date >= since" %}
+    <li><a class="topic-link" href="{{ t.url | relative_url }}">
+      <span class="topic-name">{{ t.title }}</span>
+      <span class="topic-n">{{ tp.size }}</span>
+      <span class="topic-short">{{ t.short }}</span>
+      <span class="topic-week{% if tw.size == 0 %} is-zero{% endif %}">+{{ tw.size }} this week</span>
+    </a></li>
+  {%- endfor %}
+  </ul>
+</section>
+<section class="section" aria-labelledby="latest-h">
+  <div class="section-side">
+    <h2 class="section-h" id="latest-h">Latest papers</h2>
+    <p class="digest-status">The three most recent days with new papers. Earlier papers are on the topic pages.</p>
   </div>
-  </details>
-</div>
-<div class="digest-tools" aria-live="polite">
-  <span class="tools-count">All {{ d.papers.size }} papers</span>
-  <span class="tools-active"></span>
-  <button class="tools-clear" type="button" hidden>Clear filters</button>
-</div>
-{%- assign days = d.papers | group_by: "date" -%}
-<div class="digest">
-{%- for day in days %}
-  <section class="digest-group">
-    <h2 class="digest-day">{{ day.name | date: "%-d %B %Y" }}</h2>
-    <ul class="rows">{% for paper in day.items %}{% include digest-row.html paper=paper snippet=true journal_key=true %}{% endfor %}</ul>
-  </section>
-{%- endfor %}
-</div>
-<p class="digest-status digest-empty" hidden>No papers match these filters.</p>
+  <div class="section-body digest digest-latest" data-seen="hydro-digest-seen">
+  {%- assign days = d.papers | group_by: "date" -%}
+  {%- for day in days limit: 3 %}
+    <section class="latest-day">
+      <h3 class="latest-day-h">{{ day.name | date: "%-d %B %Y" }}<span>{{ day.size }} paper{% if day.size != 1 %}s{% endif %}</span></h3>
+      <ul class="rows">{% for paper in day.items %}{% include digest-row.html paper=paper snippet=true journal_key=true %}{% endfor %}</ul>
+    </section>
+  {%- endfor %}
+  </div>
+</section>
 <script src="{{ '/assets/js/digest-filter.js' | relative_url }}" defer></script>
 {%- else %}
-<p>The list is being prepared and will appear after the next daily update.</p>
+<p>The list is being prepared and will appear after the next update.</p>
 {%- endif %}

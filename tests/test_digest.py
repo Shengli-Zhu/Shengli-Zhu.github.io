@@ -48,16 +48,45 @@ def test_rules_drop_glacier_ocean_and_tibetan_plateau_papers():
 
 def test_rules_swot_evapotranspiration_and_extremes():
     swot = classify('River discharge from the Surface Water and Ocean Topography (SWOT) mission', 'SWOT river discharge', 'Water Resources Research', 'x')
-    assert 'Hydrological remote sensing' in swot
-    assert 'Evapotranspiration' in classify('Global evapotranspiration trends', 'catchment water balance', 'Water Resources Research', 'x')
+    assert set(swot) == {'Surface hydrology', 'Hydrological remote sensing'}
+    assert 'Surface hydrology' in classify('Global evapotranspiration trends', 'catchment water balance', 'Water Resources Research', 'x')
     assert 'Hydrological extremes' in classify('Flash droughts in river basins', 'drought runoff', 'Water Resources Research', 'x')
+
+
+def test_rules_shared_topics():
+    hybrid = classify('A hybrid model of streamflow in ungauged basins', 'catchment runoff', 'Water Resources Research', 'x')
+    assert set(hybrid) == {'Computational hydrology', 'AI for hydrology'}
+    sat = classify('Evaluation of IMERG satellite precipitation in mountain basins', 'rainfall river', 'Journal of Hydrometeorology', 'x')
+    assert set(sat) == {'Precipitation', 'Hydrological remote sensing'}
+
+
+def test_rules_at_most_two_topics_title_first():
+    hits = classify('Groundwater recharge during droughts', 'Snowmelt and snowpack shape the snowmelt pulse; snowmelt matters.', 'Water Resources Research', 'x')
+    assert hits == ['Hydrological extremes', 'Subsurface hydrology']
+    many = classify('Satellite soil moisture and LSTM forecasts of flood peaks under climate change', 'river runoff', 'Water Resources Research', 'x')
+    assert len(many) == 2
+
+
+def test_rules_datasets():
+    assert classify('A global dataset of river discharge', 'streamflow runoff', 'Water Resources Research', 'x')[-1] == 'Hydrological datasets'
+    assert 'Hydrological datasets' in classify('Daily snow depth in the Andes', 'snowpack river basin snowmelt', 'Earth System Science Data', 'x')
+    assert 'Hydrological datasets' not in classify('Calibrating a catchment model using multiple observation datasets', 'streamflow runoff', 'Water Resources Research', 'x')
+    assert classify('Genome of a river fish', 'river basin species', 'Scientific Data', 'x') == []
+
+
+def test_rules_drop_water_quality_and_chemical_precipitation():
+    assert classify('Nitrate export from agricultural catchments', 'streamflow runoff', 'Water Resources Research', 'x') == []
+    assert classify('Suspended sediment in rivers', 'river discharge', 'Water Resources Research', 'x') == []
+    kept = classify('Absolute errors in river discharge from rating curves', 'river discharge streamflow observations', 'Water Resources Research', 'x')
+    assert kept != []
+    assert 'Precipitation' not in classify('Iron precipitation in coastal aquifers', 'Groundwater flow and iron precipitation in aquifers.', 'Water Resources Research', 'x')
 
 
 def test_rules_topic_needs_title_or_repeated_abstract_term():
     abstract = 'We study river discharge. One sentence mentions deep learning once.'
-    assert 'AI for hydrology & weather' not in classify('River discharge trends', abstract, 'Water Resources Research', 'x')
+    assert 'AI for hydrology' not in classify('River discharge trends', abstract, 'Water Resources Research', 'x')
     abstract2 = 'Deep learning models of river discharge. We compare deep learning to physics.'
-    assert 'AI for hydrology & weather' in classify('River discharge trends', abstract2, 'Water Resources Research', 'x')
+    assert 'AI for hydrology' in classify('River discharge trends', abstract2, 'Water Resources Research', 'x')
 
 
 def test_clean_text():
@@ -89,6 +118,13 @@ def test_missing_abstract_gives_empty_snippet():
     assert rec['url'] == 'https://doi.org/10.1029/2026WR000001'
     assert rec['authors'] == ['A0 B0', 'A1 B1', 'A2 B2']
     assert rec['more_authors'] is False
+
+
+def test_month_only_dates_fall_back_to_registration_date():
+    it = item('Flood frequency in catchments')
+    it['published'] = {'date-parts': [[2026, 10]]}
+    it['created'] = {'date-parts': [[2026, 9, 3]]}
+    assert build.pub_date(it) == date(2026, 9, 3)
 
 
 def test_record_rejects_dates_outside_window():

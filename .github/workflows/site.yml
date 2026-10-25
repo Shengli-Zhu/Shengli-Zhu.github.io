@@ -4,7 +4,7 @@ on:
   push:
     branches: [master]
   schedule:
-    - cron: "0 2 * * *"
+    - cron: "20 */6 * * *"
   workflow_dispatch:
 
 permissions:
@@ -55,7 +55,7 @@ jobs:
     if: github.event_name == 'schedule'
     runs-on: ubuntu-latest
     steps:
-      - name: Keep the daily schedule enabled without committing
+      - name: Keep the schedule enabled without committing
         run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/site.yml/enable"
         env:
           GH_TOKEN: ${{ github.token }}

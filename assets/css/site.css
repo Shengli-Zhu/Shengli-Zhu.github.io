@@ -114,6 +114,8 @@ h2, h3 { line-height: 1.25; }
 
 /* Topic marks (Hydro Digest) */
 .topics { color: var(--blue); font-size: 14px; font-weight: 500; }
+.topics a { text-decoration: none; }
+.topics a:hover { color: var(--navy); text-decoration: underline; }
 .filters { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 0 0 20px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
 .filters button { appearance: none; border: 0; background: none; padding: 4px 0; font: inherit; font-size: 15px; font-weight: 500; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; }
 .filters button:hover { color: var(--navy); }
@@ -173,8 +175,47 @@ h2, h3 { line-height: 1.25; }
 .flow-hit:hover { fill: rgba(109, 176, 224, 0.18); }
 .digest-group { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); gap: 4px 40px; padding: 16px 0; }
 .digest-group:not([hidden]) ~ .digest-group { border-top: 1px solid var(--line); }
-.digest-day { margin: 0; position: sticky; top: calc(var(--bar-offset) + 60px); transition: top 280ms ease-out; align-self: start; font-family: var(--display); font-weight: 800; font-size: clamp(26px, 2.4vw, 34px); line-height: 1; text-transform: uppercase; color: var(--navy); }
+.digest-day { margin: 0; position: sticky; top: calc(var(--bar-offset) + 60px); transition: top 280ms ease-out; align-self: start; font-family: var(--display); font-weight: 800; font-size: clamp(26px, 2.4vw, 34px); line-height: 1; color: var(--navy); }
 .digest-status { color: var(--muted); font-size: 14.5px; margin: 0 0 14px; }
+.section-side .digest-status { margin: 14px 0 0; max-width: 34ch; }
+
+/* Hydro Digest: topic index, latest days and topic pages */
+.topic-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 52px; }
+.topic-list li { border-top: 1px solid var(--line); }
+.topic-list li:nth-child(-n+2) { border-top: 0; }
+.topic-link { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 18px; row-gap: 4px; align-items: baseline; padding: 12px 0 13px; color: var(--navy); text-decoration: none; }
+.topic-list li:nth-child(-n+2) .topic-link { padding-top: 0; }
+.topic-name { font-size: 19px; font-weight: 600; line-height: 1.3; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+.topic-n { justify-self: end; font-family: var(--display); font-weight: 800; font-size: 30px; line-height: 1; font-variant-numeric: tabular-nums; }
+.topic-short { font-size: 14.5px; line-height: 1.35; color: var(--muted); }
+.topic-week { justify-self: end; font-size: 13.5px; line-height: 1.35; font-weight: 600; color: var(--blue); white-space: nowrap; }
+.topic-week.is-zero { color: #8aa0b8; font-weight: 500; }
+.topic-link:hover { color: var(--navy); }
+.topic-link:hover .topic-name { color: var(--blue); text-decoration-line: underline; }
+.latest-day + .latest-day { margin-top: 30px; }
+.latest-day-h { display: flex; align-items: baseline; gap: 14px; margin: 0 0 14px; padding-bottom: 9px; border-bottom: 1px solid var(--line); font-family: var(--display); font-weight: 800; font-size: clamp(24px, 2vw, 30px); line-height: 1; color: var(--navy); }
+.latest-day-h span { font-family: var(--text); font-size: 14px; font-weight: 500; text-transform: none; color: var(--muted); }
+.band-kicker a { color: var(--white); text-underline-offset: 0.22em; }
+.band-kicker a:hover { color: var(--white); }
+.band-topic .band-h1 { font-size: clamp(56px, 7.4vw, 128px); }
+a.facet { text-decoration: none; }
+a.facet:hover { color: var(--navy); }
+.facet[aria-current="page"] .facet-label { font-weight: 700; }
+.facet[aria-current="page"] .facet-bar::before { background: var(--blue); }
+.facet-link .facet-bar::before { width: var(--w, 0%); }
+.digest-back { margin-top: 26px; }
+
+/* Topic pages: a way back to the Hydro Digest front page, buttons for the ten topics, journal list */
+.band-back { display: inline-flex; align-items: center; gap: 9px; margin-bottom: 8px; padding: 7px 15px 7px 11px; border: 1.5px solid rgba(255, 255, 255, 0.65); border-radius: 6px; background: rgba(255, 255, 255, 0.14); font-size: 15px; font-weight: 600; line-height: 1.25; color: var(--white); text-decoration: none; transition: background-color 160ms ease-out, color 160ms ease-out, border-color 160ms ease-out; }
+.band-kicker .band-back:hover { background: var(--white); border-color: var(--white); color: var(--navy); }
+.band-back svg { flex: none; width: 16px; height: 16px; transition: transform 200ms ease-out; }
+.band-back:hover svg { transform: translateX(-4px); }
+.topic-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; padding-bottom: clamp(22px, 2.6vw, 32px); }
+.topic-btn { display: flex; align-items: center; justify-content: center; min-height: 50px; padding: 8px 14px; border: 1.5px solid var(--sky); border-radius: 6px; background: var(--white); font-size: 15px; font-weight: 600; line-height: 1.25; text-align: center; color: var(--navy); text-decoration: none; transition: background-color 160ms ease-out, color 160ms ease-out, border-color 160ms ease-out; }
+.topic-btn:hover { background: var(--sky-wash); color: var(--blue); }
+.topic-btn[aria-current="page"] { background: var(--blue); border-color: var(--blue); color: var(--white); }
+.digest-facets-e { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); gap: 18px 40px; padding: 22px 0 20px; border-top: 1px solid var(--line); }
+.journal-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 32px; }
 
 /* Blog list with the trip photograph beside each post */
 .post-row { grid-template-columns: 96px minmax(0, 1fr) clamp(150px, 16vw, 280px); align-items: start; padding: 14px 0; }
@@ -283,6 +324,11 @@ h2, h3 { line-height: 1.25; }
   .facet-panel[open] > summary::after { transform: translateY(0) rotate(-135deg); }
   .facet-panel[open] > summary { margin-bottom: 8px; }
   .digest .row { grid-template-columns: 1fr; }
+  .digest-facets-e, .journal-grid { grid-template-columns: 1fr; }
+  .topic-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .topic-btn { min-height: 46px; padding: 7px 11px; font-size: 14px; }
+  .band-topic .band-h1 { font-size: 12.5vw; }
+  .section-side .digest-status { max-width: none; margin-top: 8px; }
   .row-journal { font-size: 17px; }
   .band-h1 { font-size: 17vw; }
   .band-h1-long { font-size: 36px; }
@@ -299,6 +345,11 @@ h2, h3 { line-height: 1.25; }
   .cv-frame { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+@media (max-width: 620px) {
+  .topic-list { grid-template-columns: 1fr; }
+  .topic-list li:nth-child(2) { border-top: 1px solid var(--line); }
+  .topic-list li:nth-child(2) .topic-link { padding-top: 12px; }
+}
 
 /* Home hero: the name on the left; on the right the Earth from orbit turns into a catchment section */
 .hero { position: relative; height: 100vh; height: 100svh; min-height: 560px; overflow: hidden; color: var(--white); background: radial-gradient(120% 90% at 55% 40%, #86c0e8 0%, #6db0e0 45%, #4f97cf 100%); }

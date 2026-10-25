@@ -48,7 +48,8 @@ def snippet(abstract, limit=SNIPPET_CHARS):
 
 
 def pub_date(item):
-    for key in ('published-online', 'published', 'issued'):
+    # Some publishers give only the issue month; the DOI registration date stands in for the day.
+    for key in ('published-online', 'published', 'issued', 'created'):
         parts = (item.get(key) or {}).get('date-parts') or [[]]
         if parts[0] and len(parts[0]) == 3:
             return date(*parts[0])
@@ -80,7 +81,7 @@ def crossref_fetch(issns, start, end):
     while cursor:
         q = urllib.parse.urlencode({
             'filter': ','.join(f'issn:{i}' for i in issns) + f',from-pub-date:{start},until-pub-date:{end},type:journal-article',
-            'select': 'DOI,title,abstract,author,published,published-online,issued',
+            'select': 'DOI,title,abstract,author,published,published-online,issued,created',
             'rows': 1000, 'cursor': cursor})
         req = urllib.request.Request(f'https://api.crossref.org/works?{q}', headers={'User-Agent': USER_AGENT})
         for attempt in range(4):
