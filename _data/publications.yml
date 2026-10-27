@@ -1,3 +1,11 @@
+- year: 2026
+  authors: [Shengli Zhu, Yoshihide Wada, Diego G. Miralles, Yongqiang Zhang, Chiyuan Miao, Hamza Kunhu Bangalath, Xuetong Wang, Hylke E. Beck]
+  title: Precipitation trend uncertainty from product choice rivals or exceeds the magnitude of actual trends
+  venue: Communications Earth & Environment
+  url: https://doi.org/10.1038/s43247-026-04148-w
+  link_label: doi.org/10.1038/s43247-026-04148-w
+  kind: journal
+  selected: true
 - year: 2024
   authors: [Shengli Zhu, Zhaofei Liu]
   title: Comprehensive quantitative assessment of the performance of fourteen satellite precipitation products over Chinese mainland
