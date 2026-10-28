@@ -121,7 +121,8 @@ def test_legacy_urls():
     for rel, target in [('about/index.html', '/'), ('year-archive/index.html', '/blog/'), ('resume/index.html', '/cv/')]:
         assert (SITE / rel).exists(), rel
         assert target in text(rel)
-    assert (SITE / 'files' / 'CV_2026.09.pdf').exists()
+    cv = re.search(r'href="(/files/[^"]+\.pdf)"', text('cv/index.html')).group(1)
+    assert (SITE / cv.lstrip('/')).exists(), cv
     assert (SITE / '404.html').exists()
 
 

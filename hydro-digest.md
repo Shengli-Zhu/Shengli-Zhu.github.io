@@ -1,7 +1,7 @@
 ---
 title: Hydro Digest
 permalink: /hydro-digest/
-intro: Recent papers by other researchers, on topics close to my work. Collected automatically every six hours from sixteen journals in hydrology and the Earth sciences.
+intro: Recent papers by other researchers, on topics close to my work. Collected automatically every three hours from sixteen journals in hydrology and the Earth sciences.
 ---
 {%- assign d = site.data.hydro_digest -%}
 {%- if d and d.papers.size > 0 %}
